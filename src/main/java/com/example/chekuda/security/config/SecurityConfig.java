@@ -35,7 +35,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/create/**", "/users/**", "/createGhost/**", "/reply/**").hasAuthority("ADMIN")
+                .antMatchers("/create/**", "/users/**").hasAuthority("ADMIN")
                 .antMatchers("/css/**", "/js/**", "/images/**", "/signUp/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -44,6 +44,9 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .defaultSuccessUrl("/")
                 .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
                 .permitAll()
                 .and()
                 .rememberMe()

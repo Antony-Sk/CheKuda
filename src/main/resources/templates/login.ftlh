@@ -3,9 +3,11 @@
 <!doctype html>
 <html lang="ru">
 <head>
+    <#include "includes.ftlh"/>
     <title>Che Kuda</title>
 </head>
 <body>
+<#include "navBar.ftlh"/>
 <div> Зарегистрируйтесь :</div>
 <form method="post" action="<@spring.url '/signUp'/>">
     <#if signupError??>

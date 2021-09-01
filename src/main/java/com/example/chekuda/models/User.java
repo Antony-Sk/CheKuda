@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -25,9 +25,8 @@ public class User {
     private String login;
     private String hashPassword;
 
-    @ManyToMany
-    List<User> friends;
-
+//    @ManyToMany
+//    Set<User> friends;
 
     @Enumerated(value = EnumType.STRING)
     private UserRole userRole;
