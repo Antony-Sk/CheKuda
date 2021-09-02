@@ -9,4 +9,11 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String description;
+
+    @ManyToOne
+    private User owner;
+
+    private String xCoordinate;
+    private String yCoordinate;
 }

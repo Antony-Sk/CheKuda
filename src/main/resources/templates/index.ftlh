@@ -12,14 +12,35 @@
     var map;
     DG.then(function () {
         map = DG.map('map', {
-            'center': [54.98, 82.89],
-            'zoom': 13
+            'center': [55.7833, 49.1167],
+            'zoom': 14
         });
+        marker = DG.marker([55.7833, 49.1167], {
+            draggable: false
+
+        }).addTo(map).bindPopup('Kazan');
     });
 </script>
 <body>
-<div id="map" style="width:500px; height:400px"></div>
-<a href="/test">
+<div class="container">
+    <div class="card" style="height: 800px">
+        <div class="card-title">
+            <div class="h6" style="text-align: center; font-weight: bold">
+                Доступные места
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="map" style="width: 80%; height: 70%; margin-left: auto;margin-right: auto;"></div>
+        </div>
+    </div>
+</div>
+<input hidden type="button" id="hide-good-thing" value="Не нажимать!!!">
+<script>
+    document.getElementById('hide-good-thing').onclick = function () {
+        document.getElementById('good-thing').hidden = document.getElementById('good-thing').hidden === false;
+    }
+</script>
+<a hidden id="good-thing" href="/test">
     ______________________$$__$$______________________<br>
     ___________________$$$______$$____________________<br>
     _________________$$__$$$$$$$$__$$$________________<br>

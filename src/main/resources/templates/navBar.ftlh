@@ -18,7 +18,7 @@
         </ul>
         <form class="form-inline" method="get" action="/logout">
             <button class="btn btn-outline-dark myBtn" role="button" type="submit">
-                Выйти из аккаунта
+                Выйти/Зайти
             </button>
         </form>
     </div>
