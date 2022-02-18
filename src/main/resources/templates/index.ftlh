@@ -1,27 +1,70 @@
-<!DOCTYPE html>
+<#ftl encoding='UTF-8'>
 <#import "/spring.ftl" as spring/>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+    <script src="https://maps.api.2gis.ru/2.0/loader.js"/>
     <#include "includes.ftlh"/>
     <title>Che Kuda</title>
+    <script id="scrmap" type="text/javascript">
+        var map;
+        DG.then(function () {
+            map = DG.map('map', {
+                'center': [55.752, 48.745],
+                'zoom': 14
+            });
+            let popups = [];
+            <#list restaurants as res>
+            var x = parseFloat('${res.XCoordinate}'.replace(',', '.'));
+            var y = parseFloat('${res.YCoordinate}'.replace(',', '.'));
+            let p = DG.marker([x, y]).addTo(map).bindPopup('${res.description}', {
+                'minWidth': 80,
+            });
+            popups.add(p);
+            </#list>
+        });
+
+    </script>
 </head>
 <body>
 <#include "navBar.ftlh"/>
-<script type="text/javascript">
-    var map;
-    DG.then(function () {
-        map = DG.map('map', {
-            'center': [55.7833, 49.1167],
-            'zoom': 14
-        });
-        marker = DG.marker([55.7833, 49.1167], {
-            draggable: false
+<aside style="float: right">
+    <div class="card">
+        <table class="table table-striped table-bordered table-sm" id="res-list" hidden>
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Оценка друзей</th>
+                <th>Место</th>
+            </tr>
+            </thead>
+            <tbody>
+            <#list restaurants as res>
+                <tr>
+                    <td>${res.description}</td>
+                    <td>4.1/5.0</td>
+                    <td id="show-res-${res.id}">показать на карте</td>
+                </tr>
+                <script type="text/javascript">
+                    document.getElementById("show-res-${res.id}").onclick = function () {
+                        var x = parseFloat('${res.XCoordinate}'.replace(',', '.'));
+                        var y = parseFloat('${res.YCoordinate}'.replace(',', '.'));
 
-        }).addTo(map).bindPopup('Kazan');
-    });
-</script>
-<body>
+                        map.setView([x, y], 20);
+                    }
+                </script>
+            </#list>
+            </tbody>
+        </table>
+        <input type="button" id="show-list-of-restaurants" value="Заведения поблизости"
+               class="btn-dark">
+        <script type="text/javascript">
+            document.getElementById('show-list-of-restaurants').onclick = function () {
+                document.getElementById('res-list').hidden = document.getElementById('res-list').hidden === false;
+            }
+        </script>
+    </div>
+</aside>
 <div class="container">
     <div class="card" style="height: 800px">
         <div class="card-title">
@@ -32,50 +75,9 @@
         <div class="card-body">
             <div id="map" style="width: 80%; height: 70%; margin-left: auto;margin-right: auto;"></div>
         </div>
+
+
     </div>
 </div>
-<input hidden type="button" id="hide-good-thing" value="Не нажимать!!!">
-<script>
-    document.getElementById('hide-good-thing').onclick = function () {
-        document.getElementById('good-thing').hidden = document.getElementById('good-thing').hidden === false;
-    }
-</script>
-<a hidden id="good-thing" href="/test">
-    ______________________$$__$$______________________<br>
-    ___________________$$$______$$____________________<br>
-    _________________$$__$$$$$$$$__$$$________________<br>
-    _______________$$___$$________$$__$$______________<br>
-    ______________$___$____________$____$_____________<br>
-    _____________$__$_______________$___$$____________<br>
-    ____________$__$__________________$__$$___________<br>
-    ___________$$$$$$$$$$$$$$$$$$$$$$$$$$$$$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    ___________$___________________________$__________<br>
-    _________$$____________________________$__________<br>
-    _____$$$$$$$$$_________________________$__________<br>
-    ___$$_________$$$______________________$_________<br>
-    __$_____$________$$________________$$$$$$$$$$_____<br>
-    _$___$$$__$$_______$_____________$$__________$$___<br>
-    _$__$_______$$______$__________$$______________$$_<br>
-    _$__$_________$$____$_________$_____$$$$$$$$____$$<br>
-    __$_$___________$____$_______$$___$$________$$___$<br>
-    __$$_$__________$___$$$___$$$$___$____________$__$<br>
-    ___$$__$________$___$________$__$_____________$$$_<br>
-    _____$$__$$$$$$$__$$__________$__$____________$$__<br>
-</a>
-</body>
 </body>
 </html>

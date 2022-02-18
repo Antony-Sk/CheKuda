@@ -1,5 +1,5 @@
 <#import "/spring.ftl" as spring>
-<nav class="navbar navbar-light navbar-expand-md  navbar-red mb-3 sticky-top">
+<nav class="navbar navbar-light navbar-expand-md navbar-green mb-3 sticky-top">
     <a class="navbar-brand" href="<@spring.url '/'/>">
         <img src="<@spring.url '/images/favicon.png'/>" width="56" height="56"
              class="d-inline-block align-top" alt="">Чё Куда</a>
@@ -17,9 +17,16 @@
             </li>
         </ul>
         <form class="form-inline" method="get" action="/logout">
-            <button class="btn btn-outline-dark myBtn" role="button" type="submit">
-                Выйти/Зайти
+            <button class="btn btn-outline-dark myBtn" role="button" type="submit" id="login/logout">
+                Выйти из аккаунта
             </button>
         </form>
     </div>
+    <script type="text/javascript">
+        var button = document.getElementById('login/logout');
+        if (!(${isUserAuthenticated})) {
+            button.innerHTML = "Зайти";
+        }
+    </script>
 </nav>
+

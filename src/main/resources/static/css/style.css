@@ -7,8 +7,8 @@
     background: #FF7F50 !important;
 }
 
-.navbar-red {
-    background: #ffe5b4 !important;
+.navbar-green {
+    background: #59f17d !important;
 }
 
 .jumbotron {
@@ -29,10 +29,6 @@
 .orangeCardHeader {
     background: #ffe5b4;
 }
-
-/*.signUp-login {*/
-/*    background-image: url("/images/background.jpg");*/
-/*}*/
 
 .navbar-brand {
     font-size: 2rem;

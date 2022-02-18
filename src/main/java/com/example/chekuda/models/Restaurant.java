@@ -1,8 +1,15 @@
 package com.example.chekuda.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "ck_restaurant")
 public class Restaurant {
     @Id
@@ -11,9 +18,9 @@ public class Restaurant {
 
     private String description;
 
+    private Double xCoordinate;
+    private Double yCoordinate;
+
     @ManyToOne
     private User owner;
-
-    private String xCoordinate;
-    private String yCoordinate;
 }

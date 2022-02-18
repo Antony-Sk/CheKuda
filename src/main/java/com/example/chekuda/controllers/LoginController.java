@@ -12,8 +12,10 @@ public class LoginController {
     @GetMapping("/login")
     public String getLoginPage(Authentication authentication, ModelMap modelMap, HttpServletRequest request) {
         if (authentication != null) {
+            modelMap.addAttribute("isUserAuthenticated", String.valueOf(authentication.isAuthenticated()));
             return "redirect:/";
         }
+        modelMap.addAttribute("isUserAuthenticated", "false");
         if (request.getParameterMap().containsKey("error")) {
             modelMap.addAttribute("error", true);
         }
