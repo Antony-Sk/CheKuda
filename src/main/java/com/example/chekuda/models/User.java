@@ -1,9 +1,6 @@
 package com.example.chekuda.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -25,8 +22,6 @@ public class User {
     private String login;
     private String hashPassword;
 
-//    @ManyToMany
-//    Set<User> friends;
 
     @Enumerated(value = EnumType.STRING)
     private UserRole userRole;
